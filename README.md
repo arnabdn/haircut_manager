@@ -1,0 +1,1 @@
+# haircut_manager
