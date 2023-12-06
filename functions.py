@@ -1,5 +1,7 @@
 import csv
 import datetime as dt
+import prettytable
+
 
 records = []
 temp_records = []
