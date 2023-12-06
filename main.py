@@ -34,26 +34,29 @@ while True:
             records = []
 
         elif ops == "n":
-            while True:
-                option = input("you have two options:\n"
-                    "1. Reset data starting from a date\n"
-                    "2. Reset data untill a date\n")
-                if option == "1":
-                    fn.show_data()
-                    turn = int(input("starting from(exclusive) which entry you want to reset data? answer in numbers\n"))
-                    fn.delete_from_records(turn)
-                    fn.reconstruct_csv()
-                if option == "2":
-                    fn.show_data()
-                    turn = int(input("up until(inclusive) which entry you want to reset data? anwer in numbers\n"))
-                    fn.delete_untill_records(turn)
-                    fn.reconstruct_csv()
-                op = input("Do you want to reset more entry? y/n\n")
-                if op == "y":
-                    continue
-                else:
-                    break
-        
+            if len(records) > 0:
+                while True:
+                    option = input("you have two options:\n"
+                        "1. Reset data starting from a date\n"
+                        "2. Reset data untill a date\n")
+                    if option == "1":
+                        fn.show_data()
+                        turn = int(input("starting from(exclusive) which entry you want to reset data? answer in numbers\n"))
+                        fn.delete_from_records(turn)
+                        fn.reconstruct_csv()
+                    if option == "2":
+                        fn.show_data()
+                        turn = int(input("up until(inclusive) which entry you want to reset data? anwer in numbers\n"))
+                        fn.delete_untill_records(turn)
+                        fn.reconstruct_csv()
+                    op = input("Do you want to reset more entry? y/n\n")
+                    if op == "y":
+                        continue
+                    else:
+                        break
+            else:
+                print("Records are Empty opereation is unavailable")
+            
     elif user_op == "3":
         pass
     elif user_op == "4":
