@@ -1,6 +1,6 @@
 import csv
 import datetime as dt
-import prettytable
+from prettytable import *
 
 
 records = []
@@ -38,9 +38,11 @@ def load_data():
         print("Records loaded...")
 
 def show_data():
-    print("  Date      place     cost    weekday")
+    table = PrettyTable()
+    table.field_names=["No.","Date","Place","Cost","Weekday"]
     for i in range(len(records)):
-        print(f"{i + 1} {records[i][0]}  {records[i][1]}  {records[i][2]}  {records[i][3]}")
+        table.add_row([f"{i+1}",f"{records[i][0]}",f"{records[i][1]}",f"{records[i][2]}",f"{records[i][3]}"])
+    print(table)
 
 def delete_from_records(turn):
     global temp_records,records
