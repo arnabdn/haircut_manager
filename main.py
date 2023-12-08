@@ -25,6 +25,7 @@ while True:
         with open("log.csv","a") as file:
                 line = fn.one_liner(cd)
                 file.write(line)
+                file.close()
                 continue     
     elif user_op == "2":
         ops = input("Do you want to delete all the data? y/n ")

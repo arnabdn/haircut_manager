@@ -33,11 +33,12 @@ def load_data():
         for row in reader:
             if row == ['Date', 'Place', 'Cost', 'Weekday']:
                 pass
-            else:
+            elif row not in records:
                 records += [row]
         print("Records loaded...")
 
 def show_data():
+    load_data()
     table = PrettyTable()
     table.field_names=["No.","Date","Place","Cost","Weekday"]
     for i in range(len(records)):
@@ -66,3 +67,4 @@ def reconstruct_csv():
         for record in records:
             updated_str = ",".join(record)
             file.write(f"\n{updated_str}")
+        file.close()
