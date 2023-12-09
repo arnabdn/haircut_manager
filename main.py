@@ -3,8 +3,7 @@ import functions as fn
 
 cd = dt.datetime.now()
 
-records = []
-temp_records = []
+records = fn.records
 
 fn.load_data()
 
@@ -32,7 +31,8 @@ while True:
         if ops == "y":
             with open("log.csv","w") as file:
                 file.write("Date,Place,Cost,Weekday")
-            records = []
+                file.close()
+            fn.records = []
 
         elif ops == "n":
             if len(records) > 0:
