@@ -1,5 +1,29 @@
 import csv
 import datetime as dt
+import subprocess as sp
+import sys
+
+def module_installed(module_name):
+    try:
+        __import__(module_name)
+        return True
+    except:
+        return False
+
+if module_installed("prettytable") == False:
+    ask = input("The module prettytable is not installed. Do you want to install it? y/n ")
+    if ask == "y":
+        print("Installing the module please wait...")
+        sp.run("pip install prettytable", shell=True,stdout=sp.DEVNULL, stderr=sp.DEVNULL,)
+        print("The module prettytable has been installed...")
+    else:
+        print("\nError: The 'haircut_manager' module cannot function properly without the 'prettytable' module.")
+        print("To continue, please install the required module by running the following command:")
+        print("\tpip install prettytables")
+        print("Or, please run the program again and press 'y' when prompted to install 'prettytables' module.")
+        print("After installation, you can run the 'haircut_manager' module again.")
+        sys.exit("Terminating the program...")
+
 import prettytable as pt
 
 records = []
