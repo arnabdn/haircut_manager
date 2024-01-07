@@ -91,3 +91,24 @@ def reconstruct_csv():
             updated_str = ",".join(record)
             file.write(f"\n{updated_str}")
         file.close()
+
+def date_reformat(date):
+    day,month,year = map(int, date.split("-"))
+    return dt.datetime(year,month,day)
+
+def last_date():
+    max = date_reformat(records[0][0])
+    for date in records:
+        current = date_reformat(date[0])
+        if current>max:
+            max = current
+    return max
+
+def days_since_last_haircut(cd):
+    duration = last_date() - cd
+    days = duration.days
+
+    if days > 30:
+        return f"{days//30} month {days - ((days//30) * 30 )}days"
+    else:
+        return days

@@ -59,7 +59,7 @@ while True:
                 print("Records are Empty opereation is unavailable")
             
     elif user_op == "3":
-        pass
+        print(f"How many days/month since last Haircut:   {fn.days_since_last_haircut(cd)}")
     elif user_op == "4":
         print("See you next time!")
         break
