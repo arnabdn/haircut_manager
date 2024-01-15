@@ -105,9 +105,10 @@ def last_date():
     return max
 
 def days_since_last_haircut(cd):
-    duration = last_date() - cd
+    load_data()
+    duration = cd - last_date()
     days = duration.days
-
+    
     if days > 30:
         return f"{days//30} month {days - ((days//30) * 30 )}days"
     else:
