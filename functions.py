@@ -113,3 +113,12 @@ def days_since_last_haircut(cd):
         return f"{days//30} month {days - ((days//30) * 30 )}days"
     else:
         return days
+
+def yearly_haircut(cd):
+    current_year = cd.year
+    print(current_year)
+    total = 0
+    for record in records:
+        if int(record[0].split("-")[2]) == current_year:
+            total += 1
+    return total

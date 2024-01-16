@@ -60,6 +60,7 @@ while True:
             
     elif user_op == "3":
         print(f"How many days/month since last Haircut:   {fn.days_since_last_haircut(cd)}")
+        print(f"total number of haircut this year:    {fn.yearly_haircut(cd)}")
     elif user_op == "4":
         print("See you next time!")
         break
