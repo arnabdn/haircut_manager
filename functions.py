@@ -104,6 +104,14 @@ def last_date():
             max = current
     return max
 
+def first_date():
+    min = date_reformat(records[0][0])
+    for date in records:
+        current = date_reformat(date[0])
+        if current<min:
+            min = current
+    return min
+
 def days_since_last_haircut(cd):
     load_data()
     duration = cd - last_date()
@@ -116,9 +124,24 @@ def days_since_last_haircut(cd):
 
 def yearly_haircut(cd):
     current_year = cd.year
-    print(current_year)
     total = 0
     for record in records:
         if int(record[0].split("-")[2]) == current_year:
             total += 1
     return total
+
+def monthly_haircut_currentyear(cd):
+    haircut_per_year = yearly_haircut(cd)
+    duration_since_new_year = cd - (dt.datetime(cd.year,1,1))
+    days = duration_since_new_year.days
+    months = days / 30
+    monthly_haircut_currentyear = haircut_per_year / months 
+    return monthly_haircut_currentyear
+
+def overall_monthly_haircut(cd):
+    total_haircut = len(records)
+    duration_since_first_haircut = cd - first_date()
+    days = duration_since_first_haircut.days
+    months = days / 30
+    overall_monthly_haircut = total_haircut / months
+    return f"{overall_monthly_haircut:.2f}"

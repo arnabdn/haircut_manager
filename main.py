@@ -59,8 +59,10 @@ while True:
                 print("Records are Empty opereation is unavailable")
             
     elif user_op == "3":
-        print(f"How many days/month since last Haircut:   {fn.days_since_last_haircut(cd)}")
-        print(f"total number of haircut this year:    {fn.yearly_haircut(cd)}")
+        print(f"How many days/month since last Haircut:       {fn.days_since_last_haircut(cd)}")
+        print(f"total number of haircut this year:            {fn.yearly_haircut(cd)}")
+        print(f"Haircut per month this year                   {fn.monthly_haircut_currentyear(cd)}")
+        print(f"Haircut per month since start of the records: {fn.overall_monthly_haircut(cd)}")
     elif user_op == "4":
         print("See you next time!")
         break
