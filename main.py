@@ -62,7 +62,9 @@ while True:
         print(f"How many days/month since last Haircut:       {fn.days_since_last_haircut(cd)}")
         print(f"total number of haircut this year:            {fn.yearly_haircut(cd)}")
         print(f"Haircut per month this year                   {fn.monthly_haircut_currentyear(cd)}")
-        print(f"Haircut per month since start of the records: {fn.overall_monthly_haircut(cd)}")
+        print(f"Haircut per month since start of records:     {fn.overall_monthly_haircut(cd)}")
+        print(f"total cost this year                          {fn.total_cost_current_year(cd)}")
+        print(f"Total cost since start of records             {fn.total_cost()}")
     elif user_op == "4":
         print("See you next time!")
         break

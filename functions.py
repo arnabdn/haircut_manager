@@ -145,3 +145,16 @@ def overall_monthly_haircut(cd):
     months = days / 30
     overall_monthly_haircut = total_haircut / months
     return f"{overall_monthly_haircut:.2f}"
+
+def total_cost_current_year(cd):
+    total = 0
+    for record in records:
+        if int(record[0][-4:]) == cd.year:
+            total += int(record[2])
+    return total
+
+def total_cost():
+    total = 0
+    for record in records:
+        total += int(record[2])
+    return total
