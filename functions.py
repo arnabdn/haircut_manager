@@ -28,6 +28,7 @@ import prettytable as pt
 
 records = []
 temp_records = []
+places = {}
 
 def one_liner(cd):
     final_lst = []
@@ -61,7 +62,6 @@ def load_data():
         print("Records loaded...")
 
 def show_data():
-    load_data()
     table = pt.PrettyTable()
     table.field_names=["No.","Date","Place","Cost","Weekday"]
     for i in range(len(records)):
@@ -113,14 +113,13 @@ def first_date():
     return min
 
 def days_since_last_haircut(cd):
-    load_data()
     duration = cd - last_date()
     days = duration.days
     
     if days > 30:
         return f"{days//30} month {days - ((days//30) * 30 )}days"
     else:
-        return days
+        return f"{days} days"
 
 def yearly_haircut(cd):
     current_year = cd.year
@@ -136,7 +135,7 @@ def monthly_haircut_currentyear(cd):
     days = duration_since_new_year.days
     months = days / 30
     monthly_haircut_currentyear = haircut_per_year / months 
-    return monthly_haircut_currentyear
+    return f"{monthly_haircut_currentyear:.2f}"
 
 def overall_monthly_haircut(cd):
     total_haircut = len(records)
@@ -158,3 +157,16 @@ def total_cost():
     for record in records:
         total += int(record[2])
     return total
+
+def update_places():
+    global places
+    for record in records:
+        if record[1] not in places:
+            places[record[1]] = 0
+        else:
+            places[record[1]] += 1
+
+def most_haircut():
+    global places
+    most_haircut = max(places,key=lambda x: places[x])
+    return most_haircut

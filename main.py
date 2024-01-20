@@ -6,6 +6,7 @@ cd = dt.datetime.now()
 records = fn.records
 
 fn.load_data()
+fn.update_places()
 
 
 while True:
@@ -25,6 +26,8 @@ while True:
                 line = fn.one_liner(cd)
                 file.write(line)
                 file.close()
+                fn.load_data()
+                fn.update_places() 
                 continue     
     elif user_op == "2":
         ops = input("Do you want to delete all the data? y/n ")
@@ -45,11 +48,13 @@ while True:
                         turn = int(input("starting from(exclusive) which entry you want to reset data? answer in numbers\n"))
                         fn.delete_from_records(turn)
                         fn.reconstruct_csv()
+                        fn.update_places()
                     if option == "2":
                         fn.show_data()
                         turn = int(input("up until(inclusive) which entry you want to reset data? anwer in numbers\n"))
                         fn.delete_untill_records(turn)
                         fn.reconstruct_csv()
+                        fn.update_places()
                     op = input("Do you want to reset more entry? y/n\n")
                     if op == "y":
                         continue
@@ -59,12 +64,14 @@ while True:
                 print("Records are Empty opereation is unavailable")
             
     elif user_op == "3":
-        print(f"How many days/month since last Haircut:       {fn.days_since_last_haircut(cd)}")
-        print(f"total number of haircut this year:            {fn.yearly_haircut(cd)}")
-        print(f"Haircut per month this year                   {fn.monthly_haircut_currentyear(cd)}")
-        print(f"Haircut per month since start of records:     {fn.overall_monthly_haircut(cd)}")
-        print(f"total cost this year                          {fn.total_cost_current_year(cd)}")
-        print(f"Total cost since start of records             {fn.total_cost()}")
+        print(f"Days Since Last Haircut:                    {fn.days_since_last_haircut(cd)}")
+        print(f"Total Haircuts This Year:                   {fn.yearly_haircut(cd)}")
+        print(f"Haircuts Per Month This Year:               {fn.monthly_haircut_currentyear(cd)}")
+        print(f"Haircuts Per Month Since Start of Records:  {fn.overall_monthly_haircut(cd)}")
+        print(f"Total Cost This Year:                       \u09F3{fn.total_cost_current_year(cd)}")
+        print(f"Total Cost Since Start of Records:          \u09F3{fn.total_cost()}")
+        print(f"Places with the Most Haircuts:              {fn.most_haircut()}")
+    
     elif user_op == "4":
         print("See you next time!")
         break
