@@ -44,7 +44,13 @@ def one_liner(cd):
         new_cd = dt.date(cd.year,cd.month,dm)
         date_str = f"{new_cd.day}-{new_cd.month}-{new_cd.year}"
         weekday = new_cd.strftime("%A")
-    askplace = input("where did you cut your hair from ")
+    print("where did you cut your hair from? is it any from the list below?")
+    show_places()
+    askplace = input("If the place is in the list type the corresponding number. Else, type 'n': ")
+    if askplace.isdigit() == True:
+        askplace = choose_place(askplace)
+    elif askplace == "n":
+        askplace = input("Enter the name of the place ")
     cost = input("How much did it cost? ")
     final_lst += [date_str,askplace,cost,weekday]
     final_str = ",".join(final_lst)
@@ -65,7 +71,16 @@ def show_data():
     table = pt.PrettyTable()
     table.field_names=["No.","Date","Place","Cost","Weekday"]
     for i in range(len(records)):
-        table.add_row([f"{i+1}",f"{records[i][0]}",f"{records[i][1]}",f"{records[i][2]}",f"{records[i][3]}"])
+        table.add_row([f"{i + 1}",f"{records[i][0]}",f"{records[i][1]}",f"{records[i][2]}",f"{records[i][3]}"])
+    print(table)
+
+def show_places():
+    table = pt.PrettyTable()
+    table.field_names=["No.","Place","Haircut taken"]
+    i = 1
+    for ele in list(places):
+        table.add_row([f"{i}",f"{ele}",f"{places[ele]}"])
+        i += 1
     print(table)
 
 def delete_from_records(turn):
@@ -160,9 +175,10 @@ def total_cost():
 
 def update_places():
     global places
+    places = {}
     for record in records:
         if record[1] not in places:
-            places[record[1]] = 0
+            places[record[1]] = 1
         else:
             places[record[1]] += 1
 
@@ -170,3 +186,6 @@ def most_haircut():
     global places
     most_haircut = max(places,key=lambda x: places[x])
     return most_haircut
+
+def choose_place(op):
+    return list(places)[int(op) - 1]
