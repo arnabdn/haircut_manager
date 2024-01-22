@@ -18,7 +18,8 @@ while True:
     "| 1. Add data           |\n" +
     "| 2. Reset data         |\n" +
     "| 3. See stats          |\n" +
-    "| 4. Quit               |\n" +
+    "| 4. Show log           |\n" +
+    "| 5. Quit               |\n" +
     "+-----------------------+\n")
 
     if user_op == "1":
@@ -71,9 +72,13 @@ while True:
         print(f"Total Cost This Year:                       \u09F3{fn.total_cost_current_year(cd)}")
         print(f"Total Cost Since Start of Records:          \u09F3{fn.total_cost()}")
         print(f"Places with the Most Haircuts:              {fn.most_haircut()}")
-    
+
     elif user_op == "4":
+        fn.show_data()
+
+    elif user_op == "5":
         print("See you next time!")
         break
+
     else:
         print("Invalid option")
