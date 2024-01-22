@@ -44,13 +44,16 @@ def one_liner(cd):
         new_cd = dt.date(cd.year,cd.month,dm)
         date_str = f"{new_cd.day}-{new_cd.month}-{new_cd.year}"
         weekday = new_cd.strftime("%A")
-    print("where did you cut your hair from? is it any from the list below?")
-    show_places()
-    askplace = input("If the place is in the list type the corresponding number. Else, type 'n': ")
-    if askplace.isdigit() == True:
-        askplace = choose_place(askplace)
-    elif askplace == "n":
-        askplace = input("Enter the name of the place ")
+    if len(records) > 0:
+        print("where did you cut your hair from? is it any from the list below?")
+        show_places()
+        askplace = input("If the place is in the list type the corresponding number. Else, type 'n': ")
+        if askplace.isdigit() == True:
+            askplace = choose_place(askplace)
+        elif askplace == "n":
+            askplace = input("Enter the name of the place ")
+    else:
+        askplace = input("Where did you cut your hair form?")
     cost = input("How much did it cost? ")
     final_lst += [date_str,askplace,cost,weekday]
     final_str = ",".join(final_lst)
@@ -68,11 +71,14 @@ def load_data():
         print("Records loaded...")
 
 def show_data():
-    table = pt.PrettyTable()
-    table.field_names=["No.","Date","Place","Cost","Weekday"]
-    for i in range(len(records)):
-        table.add_row([f"{i + 1}",f"{records[i][0]}",f"{records[i][1]}",f"{records[i][2]}",f"{records[i][3]}"])
-    print(table)
+    if len(records) > 0:
+        table = pt.PrettyTable()
+        table.field_names=["No.","Date","Place","Cost","Weekday"]
+        for i in range(len(records)):
+            table.add_row([f"{i + 1}",f"{records[i][0]}",f"{records[i][1]}",f"{records[i][2]}",f"{records[i][3]}"])
+        print(table)
+    else:
+        print("No entry yet")
 
 def show_places():
     table = pt.PrettyTable()
